@@ -17,6 +17,8 @@
         <param-value>classpath:log4j2.xml</param-value>
     </context-param>
 
+
+
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -45,6 +47,10 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:/applicationContext-springmvc.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>org.apache.velocity.toolbox</param-name>
+            <param-value>/WEB-INF/toolbox.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

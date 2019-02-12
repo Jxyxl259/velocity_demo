@@ -5,7 +5,18 @@
     <title>show all users</title>
 </head>
 <body>
-        $!{key}
+        使用toolbox工具类显示时间
+        Here we get the date from the DateTool: $date.medium
+
+        <br/>
+        使用在toolbox中自定义的工具类 ->
+        $date_time_tool.remainingTime("2019-02-12 21:51:00")
+
+
+        <br/>
+        <br/>
+
+            $!{key}
         直接引用cart 对象：-> $!{cart}
         <br/>
         调用ShoppingCart对象的toString()方法：-> $!{cart.toString()}
@@ -16,7 +27,7 @@
 
                 ##if(!$null.isNull( ${sku.attributes.personal}) && $sku.attributes.personal.size() > 0)
                 ## 效果等同于上面一行代码
-                #if( $!{sku.attributes.personal} && $sku.attributes.personal.size() > 0)
+                #if( $!{sku.attributes.personal} && $sku.attributes.personal.size() > 0 )
                     <div style="display: block;width: 100px;height: 100px; background-color: red; border: 2px solid">
                         调用对象的属性：->
                         #foreach($p_info in $!sku.attributes.personal)
