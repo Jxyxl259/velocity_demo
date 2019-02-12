@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+       default-lazy-init="false" default-autowire="byName">
+    <!--leconf start -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+
+    <!--<context:component-scan base-package="com.lenovo.m2.web.manager.**.impl,com.lenovo.m2.web.remote.**.impl,com.lenovo.m2.web.webapp" />-->
+    <context:component-scan base-package="com.velocity.demo.**"/>
+
+
+    <mvc:annotation-driven />
+
+
+    <!-- 配置VelocityConfigurer，配置Velocity引擎。
+        通过属性resourceLoaderPath告诉Velocity到哪里寻找它的模板。
+        通常将模板放到WEB-INF下-->
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/velocity/templates"/>
+        <property name="configLocation" value="classpath:velocity/velocity.properties"/>
+    </bean>
+
+
+    <!--配置视图解析器-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="cache" value="false"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".vm"/>
+        <property name="contentType" value="text/html;charset=utf-8"/>
+        <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="allowSessionOverride" value="true"/>
+        <property name="allowRequestOverride" value="true"/>
+    </bean>
+
+    <!--禁用了原有属性：layoutUrl，layoutKey，screenContentKey，dateToolAttribute，numberToolAttribute，toolboxConfigLocation -->
+    <!--<bean id="viewResolver"
+          class="com.lenovo.m2.arch.framework.springmvc.view.LenovoVelocityLayoutViewResolver">
+        <property name="viewClass"
+                  value="com.lenovo.m2.arch.framework.springmvc.view.LenovoVelocityLayoutView" />
+        <property name="cache" value="false" />
+        <property name="prefix" value="/WEB-INF/vm/" />
+        <property name="suffix" value=".vm" />
+        <property name="contentType" value="text/html;charset=UTF-8" />
+        &lt;!&ndash; 是否使用spring對宏定義的支持 &ndash;&gt;
+        <property name="exposeSpringMacroHelpers" value="true" />
+        &lt;!&ndash; 是否開放request屬性 &ndash;&gt;
+        <property name="exposeRequestAttributes" value="true" />
+        &lt;!&ndash; 允许request属性和model属性重复(model中的属性会被request的覆盖)&ndash;&gt;
+        <property name="allowRequestOverride" value="true"/>
+        &lt;!&ndash; request屬性引用名稱 &ndash;&gt;
+        <property name="requestContextAttribute" value="rc" />
+        <property name="velocityTools" ref="velocityTools" />
+        &lt;!&ndash; <property name="velocityUrl" ref="velocityUrl"/> &ndash;&gt;
+    </bean>-->
+
+
+    <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8" />
+        <!-- 指定所上传文件的总大小不能超过6.5M。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+        <property name="maxUploadSize" value="6815744" />
+    </bean>
+
+</beans>

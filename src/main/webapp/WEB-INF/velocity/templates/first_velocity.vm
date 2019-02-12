@@ -1,0 +1,13 @@
+<!DOCTYPEhtml>
+<html lang="en">
+<head>
+    <metacharset
+    ="UTF-8">
+    <title>show all users</title>
+</head>
+<body>
+    <table>
+        $!{key}
+    </table>
+</body>
+</html>
