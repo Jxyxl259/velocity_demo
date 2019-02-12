@@ -1,13 +1,19 @@
 <!DOCTYPEhtml>
 <html lang="en">
 <head>
-    <metacharset
-    ="UTF-8">
+    <metacharset="UTF-8">
     <title>show all users</title>
 </head>
 <body>
-    <table>
         $!{key}
-    </table>
+        #foreach($vendor in $!{cart.vendors})
+            #foreach($sorted in $!{vendor.sorteds})
+                #set($sku = $sorted.item )
+                #if($!{sku.attributes.personal} && $sku.attributes.personal.size() > 0)
+                    <div style="display: block;width: 100px;height: 100px; background-color: red; border: 2px solid"></div>
+                #end
+            #end
+        #end
+
 </body>
 </html>
