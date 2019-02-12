@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,6 +32,7 @@ public class FirstController {
         Vendor vendors = new Vendor();
         SortedEntry sorted = new SortedEntry();
         Sku s = new Sku();
+        s.setPrice(new BigDecimal(5));
         List<String> personalInfo = new ArrayList<>();
         personalInfo.add("A面刻字:aaaaaa");
         s.getAttributes().put("personal", personalInfo);

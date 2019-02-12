@@ -6,14 +6,47 @@
 </head>
 <body>
         $!{key}
+        直接引用cart 对象：-> $!{cart}
+        <br/>
+        调用ShoppingCart对象的toString()方法：-> $!{cart.toString()}
+        <br/>
         #foreach($vendor in $!{cart.vendors})
             #foreach($sorted in $!{vendor.sorteds})
                 #set($sku = $sorted.item )
-                #if($!{sku.attributes.personal} && $sku.attributes.personal.size() > 0)
-                    <div style="display: block;width: 100px;height: 100px; background-color: red; border: 2px solid"></div>
+
+                ##if(!$null.isNull( ${sku.attributes.personal}) && $sku.attributes.personal.size() > 0)
+                ## 效果等同于上面一行代码
+                #if( $!{sku.attributes.personal} && $sku.attributes.personal.size() > 0)
+                    <div style="display: block;width: 100px;height: 100px; background-color: red; border: 2px solid">
+                        调用对象的属性：->
+                        #foreach($p_info in $!sku.attributes.personal)
+                            $p_info
+                        #end
+                    </div>
+                #else
+                    <p>没有私定内容</p>
                 #end
+                引用对象的方法 -> total_price = ￥：$!{sku.calculatePrice(3)}元
             #end
         #end
+
+        <br/>
+
+
+        #set($name = "jiangBUG")
+        #set($hi = "hello $name")
+        $hi
+
+
+    #set($list=["aaa", "bbb", "ccc"])
+        <ul>
+            #foreach($l in $list)
+                <li>$l</li>
+            #stop
+                <li>$l</li>
+            #end
+        </ul>
+    <p>test</p>
 
 </body>
 </html>

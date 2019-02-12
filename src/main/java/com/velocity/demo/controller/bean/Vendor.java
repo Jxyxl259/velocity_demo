@@ -18,4 +18,11 @@ public class Vendor {
     public void setSorteds(List<SortedEntry> sorteds) {
         this.sorteds = sorteds;
     }
+
+    @Override
+    public String toString() {
+        return "Vendor{" +
+                "sorteds=" + sorteds +
+                '}';
+    }
 }

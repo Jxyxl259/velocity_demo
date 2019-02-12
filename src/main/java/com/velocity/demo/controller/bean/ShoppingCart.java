@@ -18,4 +18,11 @@ public class ShoppingCart {
     public void setVendors(List<Vendor> vendors) {
         this.vendors = vendors;
     }
+
+//    @Override
+//    public String toString() {
+//        return "Cart{" +
+//                "vendors=" + vendors +
+//                '}';
+//    }
 }

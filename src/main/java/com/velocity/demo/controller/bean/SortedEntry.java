@@ -26,4 +26,12 @@ public class SortedEntry {
     public void setItem(Item item) {
         this.item = item;
     }
+
+    @Override
+    public String toString() {
+        return "SortedEntry{" +
+                "itemType=" + itemType +
+                ", item=" + item +
+                '}';
+    }
 }
